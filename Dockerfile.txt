@@ -1,0 +1,23 @@
+# Dockerfile for deploying Shiny app on Render
+
+FROM rocker/shiny:4.3.1
+
+# Install system libraries
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    && apt-get clean
+
+# Copy your app files
+COPY . /srv/shiny-server/
+
+# Install R packages
+RUN Rscript /srv/shiny-server/install_packages.R
+
+# Expose port
+EXPOSE 3838
+
+# Run app
+CMD ["/usr/bin/shiny-server"]
