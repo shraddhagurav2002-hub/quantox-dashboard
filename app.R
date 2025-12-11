@@ -19,7 +19,8 @@ library(shinycssloaders)
 thematic_shiny(font = "auto")
 
 options(shiny.host = "0.0.0.0")
-options(shiny.port = 3838)
+options(shiny.port = as.numeric(Sys.getenv("PORT", 3838)))
+
 
 ###############################################################################
 # THEME + CSS
@@ -1054,6 +1055,7 @@ server <- function(input, output, session) {
 # RUN APP
 ###############################################################################
 shinyApp(ui, server)
+
 
 
 
