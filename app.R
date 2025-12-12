@@ -15,16 +15,7 @@ cat("APP LOADING…", Sys.time(), "\n")
 Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
 Sys.setenv("PKG_CONFIG_PATH" = "")
 
-# Prevent leaflet from trying to install sf/raster
-install.packages("leaflet", dependencies = FALSE)
 
-# Install normal packages
-install.packages(c(
-  "shiny", "RPostgres", "DBI", "dplyr", "ggplot2", "plotly",
-  "DT", "bslib", "shinyWidgets", "thematic", 
-  "shinyjs", "lubridate", "shinycssloaders", "tools"
-))
-install.packages("leaflet", dependencies = FALSE)
 
 
 
@@ -1087,6 +1078,7 @@ server <- function(input, output, session) {
 # RUN APP
 ###############################################################################
 shinyApp(ui, server)
+
 
 
 
