@@ -3,6 +3,14 @@ options(shiny.trace = TRUE)
 print("APP STARTING ---->")
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 
+options(shiny.error = function() {
+  print("==== SHINY ERROR TRACEBACK ====")
+  traceback()
+})
+
+options(shiny.trace = TRUE)
+cat("APP LOADING…", Sys.time(), "\n")
+
 # Avoid optional heavy dependencies (raster, terra, sf)
 Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
 Sys.setenv("PKG_CONFIG_PATH" = "")
@@ -1079,6 +1087,7 @@ server <- function(input, output, session) {
 # RUN APP
 ###############################################################################
 shinyApp(ui, server)
+
 
 
 
